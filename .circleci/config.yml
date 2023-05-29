@@ -28,3 +28,7 @@ jobs:
           path: ~/test-results
       - store-artifacts:
           path: ~/test-results/junit
+workflows:
+  test-and-build:
+    jobs:
+      - unit-test
