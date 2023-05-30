@@ -16,9 +16,7 @@ jobs:
           name: Chmod permissions # permission for Gradlew Dependencies fail, use this.
           command: sudo chmod +x ./gradlew
       - android/run-tests:
-          test-command:|
-          sudo chmod +x gradlew
-          ./gradlew testDebugUnitTest
+          test-command: ./gradlew testDebugUnitTest
       - android/save-gradle-cache
       - run:
           name: save test results
