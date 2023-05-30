@@ -13,13 +13,13 @@ jobs:
       - checkout
       - android/restore-gradle-cache
       - android/run-tests:
-          test-command: ./gradlew testDebugUnitTest
+          test-command: ./gradlew testDebug
       - android/save-gradle-cache
       - run:
           name: save test results
           command: |
             mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
           path: ~/test-results
