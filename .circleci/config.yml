@@ -3,7 +3,7 @@ version: 2.1
 orbs:
   android: circleci/android@2.1.2
   gradle: circleci/gradle@3.0.0
-  
+
 jobs:
   build:
     executor:
@@ -12,8 +12,13 @@ jobs:
     steps:
       - checkout
       - android/restore-gradle-cache
+      - run:
+          name: Chmod permissions # permission for Gradlew Dependencies fail, use this.
+          command: sudo chmod +x ./gradlew
       - android/run-tests:
-          test-command: ./gradlew testDebugUnitTest
+          test-command:|
+          sudo chmod +x gradlew
+          ./gradlew testDebugUnitTest
       - android/save-gradle-cache
       - run:
           name: save test results
